@@ -16,7 +16,7 @@ gc.collect()
 # MQTT Server Information 
 SERVER ='m24.cloudmqtt.com' #TODO
 CLIENT_ID='ESP32'           #TODO
-PORT=14362                  #TODO
+PORT=S                  #TODO
 TOPIC_PUB=b'temp_humidity'  #aka tag publish
 TOPIC_SUB=b'led1'           #aka tag subscribe
 # User login if needed
@@ -40,7 +40,7 @@ def read_ds_sensor():
     p = float(bme.read_pressure()) / 100
     h = float(bme.read_humidity()) / 1024
     if isinstance(t, float) and isinstance(p, float) and isinstance(t, float):
-      msg = (b'{0:3.1f},{1:3.1f},{2:3.1f}'.format(t,h,p))
+      msg = (b'{0:3.1f}C°,{1:3.1f}%,{2:3.1f}P'.format(t,h,p))
       print(msg)
       return msg
     else:
@@ -83,7 +83,7 @@ except OSError as e:
 while True:
   try:
     #TODO
-    # 2nd step, wait for msg
+    #2nd step, wait for msg
     #client.wait_msg()
     if (time.time() - last_sensor_reading) > readings_interval:
       msg = read_ds_sensor()
