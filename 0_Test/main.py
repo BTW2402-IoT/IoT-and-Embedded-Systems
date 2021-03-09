@@ -1,27 +1,23 @@
-from machine import Pin
+from machine import Pin, ADC, PWM
+from time import sleep
 
-bit1 = Pin(25, Pin.OUT)
-bit2 = Pin(33, Pin.OUT)
-bit3 = Pin(15, Pin.OUT)
-bit4 = Pin(21, Pin.OUT)
-bit5 = Pin(14, Pin.OUT)
-bit6 = Pin(32, Pin.OUT)
-bit7 = Pin(27, Pin.OUT)
-bit8 = Pin(12, Pin.OUT)
-bit = [bit1, bit2, bit3, bit4, bit5, bit6, bit7, bit8]
+frequency = 5000
+led = PWM(Pin(25), frequency)
+button = Pin(15, Pin.IN, Pin.PULL_DOWN)
 
-#****************** funtions *****************
+duty_cycle = 0
 
-#test loop
-def test():
-    for i in range(8):
-        print(bit[i].value())
+while True:
+    if button.value():
+        duty_cycle = duty_cycle + 255
+        while True:
+            print("Hold Loop")
+            if not button.value():
+                break
 
-#****************** rutine *******************
+    if duty_cycle > 1024:
+        duty_cycle = 0
 
-x = int(input("enter a value: "))
-y = "{0:08b}".format(x)
-length = int(len(y))-1
-
-for i in range(8):
-    bit[i].value(int(y[(length-i)])) #turn direction (lowest bit = LED 1)
+    sleep(0.001)
+    led.duty(duty_cycle)
+    print(duty_cycle)
