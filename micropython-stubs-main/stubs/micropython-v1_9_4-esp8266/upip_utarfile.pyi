@@ -1,0 +1,13 @@
+from typing import Any
+
+DIRTYPE: str
+
+class FileSection:
+    def read(self, *argv) -> Any: ...
+    def readinto(self, *argv) -> Any: ...
+    def skip(self, *argv) -> Any: ...
+
+REGTYPE: str
+TAR_HEADER: Any
+
+class TarFile: ...
