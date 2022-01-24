@@ -8,13 +8,13 @@
 #################################################################
 import paho.mqtt.client as mqtt
 # MQTT Server Information 
-SERVER = "m24.cloudmqtt.com"
-PORT = 14362
+SERVER = "hairdresser.cloudmqtt.com"
+PORT = 15454
 # User login if needed
-USER ='USER'
-PW ='PW'
+USER ='ebiswygf'
+PW ='NUgfXT68DID3'
 # MQTT broker topic (subscribe)
-TOPIC='TOPIC'
+TOPIC='temp_humi_pres'
 
 def on_connect(client,userdata,flags,rc):
     print('connected with result code {0}'.format(rc))
