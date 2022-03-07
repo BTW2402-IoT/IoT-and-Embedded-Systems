@@ -1,0 +1,6 @@
+from typing import Any
+
+battery: Any
+
+def buttons() -> None: ...
+def light() -> None: ...
