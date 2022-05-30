@@ -6,8 +6,7 @@
 ###############################################################
 from time import sleep
 from machine import Pin, I2C, reset, freq, deepsleep
-import BME280 
-
+import BME280
 
 # Create library object using our bus I2C port
 i2c1 = I2C(scl=Pin(22), sda=Pin(23), freq=10000)
